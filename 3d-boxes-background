@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+  box-sizing: border-box;
+  /*没box-sizing:border-box属性，宽高会加上padding和border的值，
+   要手动减去padding和border的值，并调整content的值，以免超过给定的宽高
+   
+   加了box-sizing:border-box属性，padding和border的值就不会在影响元素的宽高，
+  相当于把padding和border的值都算在content里,
+  盒子模型会自动根据padding和border的值来调整content的值，就不需要手动调整
+标准盒子模型，一般浏览器也都默认为标准盒子模型。即：box-sizing:content-box
+怪异盒子模型，一般根据实际项目需要自行设置。即：box-sizing:border-box */
+}
+
+body {
+  background-color: #fafafa;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* 定义项目在交叉轴上如何对齐。
+  flex-start：交叉轴的起点对齐。
+  flex-end：交叉轴的终点对齐。
+  center：交叉轴的中点对齐。
+  baseline: 项目的第一行文字的基线对齐。
+  stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。 */
+  justify-content: center;
+  /* 定义了项目在主轴上的对齐方式。
+    justify-content: flex-start | flex-end | center
+                             | space-between | space-around;
+   */
+  height: 100vh;
+  overflow: hidden;
+}
+
+.magic {
+  background-color: #f9ca24;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  border: 0;
+  /*使用简写属性，同时设置四条边界，四条边界的宽度、样式和颜色都是一样的*/
+  /* border: 2px solid green;  实线边框*/
+  border-radius: 3px;
+  /*边界半径 ，也就是圆角
+  一个值：设置四个角有相同的边界半径；
+  两个值：第一个值设置左上角和右下角，第二个值设置右上角和左下角；
+  三个值：第一个值设置左上角，第二个值设置右上角和左下角，第三个值设置右下角；
+  四个值：第一个值设置左上角，第二个值设置右上角，第三个值设置右下角，第四个之设置左下角。 */
+  font-size: 16px;
+  padding: 12px 20px;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  letter-spacing: 1px;
+  box-shadow: 0 3px rgba(249, 202, 36, 0.5);
+  z-index: 100;
+}
+
+.magic:focus {
+  outline: none;
+}
+
+.magic:active {
+  box-shadow: none;
+  transform: translateY(2px);
+}
+
+.boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  height: 500px;
+  width: 500px;
+  position: relative;
+  transition: 0.4s ease;
+}
+
+.boxes.big {
+  width: 600px;
+  height: 600px;
+}
+
+.boxes.big .box {
+  transform: rotateZ(360deg);
+}
+
+.box {
+  background-image: url('https://media.giphy.com/media/EZqwsBSPlvSda/giphy.gif');
+  background-repeat: no-repeat;
+  background-size: 500px 500px;
+  position: relative;
+  height: 125px;
+  width: 125px;
+  transition: 0.4s ease;
+}
+
+.box::after {
+  content: '';
+  background-color: #f6e58d;
+  position: absolute;
+  top: 8px;
+  right: -15px;
+  height: 100%;
+  width: 15px;
+  transform: skewY(45deg);
+}
+
+.box::before {
+  content: '';
+  background-color: #f9ca24;
+  position: absolute;
+  bottom: -15px;
+  left: 8px;
+  height: 15px;
+  width: 100%;
+  transform: skewX(45deg);
+}
